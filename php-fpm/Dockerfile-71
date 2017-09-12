@@ -289,6 +289,19 @@ RUN if [ ${INSTALL_MSSQL} = true ]; then \
         && docker-php-ext-enable pdo_sqlsrv sqlsrv \
 ;fi
 
+ARG INSTALL_FILE_MARC=false
+RUN if [ ${INSTALL_FILE_MARC} = true ]; then \
+    # Install the File_MARC and dependencies
+    pear install Validate_ISPN-alpha && \
+    pear install File_MARC-stable \
+;fi
+
+ARG INSTALL_PHP_SOCKET=false
+RUN if [ ${INSTALL_PHP_SOCKET} = true ]; then \
+    # Install PHP with socket extension
+    docker-php-ext-install sockets \
+;fi
+
 #
 #--------------------------------------------------------------------------
 # Final Touch

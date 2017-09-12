@@ -75,6 +75,8 @@ services:
           - INSTALL_GHOSTSCRIPT=${PHP_FPM_INSTALL_GHOSTSCRIPT}
           - INSTALL_LDAP=${PHP_FPM_INSTALL_LDAP}
           - INSTALL_SWOOLE=${PHP_FPM_INSTALL_SWOOLE}
+          - INSTALL_FILE_MARC=${PHP_FPM_INSTALL_FILE_MARC}
+          - INSTALL_PHP_SOCKET=${PHP_FPM_INSTALL_PHP_SOCKET}
         dockerfile: "Dockerfile-${PHP_VERSION}"
       volumes_from:
         - applications
