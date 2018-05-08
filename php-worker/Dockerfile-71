@@ -6,7 +6,7 @@
 
 FROM php:7.1-alpine
 
-MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
+LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
 
 RUN apk --update add wget \
   curl \
@@ -23,6 +23,13 @@ RUN apk --update add wget \
 
 RUN docker-php-ext-install mysqli mbstring pdo pdo_mysql mcrypt tokenizer xml
 RUN pecl channel-update pecl.php.net && pecl install memcached && docker-php-ext-enable memcached
+
+# Install PostgreSQL drivers:
+ARG INSTALL_PGSQL=false
+RUN if [ ${INSTALL_PGSQL} = true ]; then \
+    apk --update add postgresql-dev \
+        && docker-php-ext-install pdo_pgsql \
+;fi
 
 RUN rm /var/cache/apk/* \
     && mkdir -p /var/www
@@ -49,6 +56,13 @@ ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 #
     # -- Your awesome modifications go here -- #
 
+#
+#--------------------------------------------------------------------------
+# Check PHP version
+#--------------------------------------------------------------------------
+#
+
+RUN php -v | head -n 1 | grep -q "PHP 7.1."
 
 #
 #--------------------------------------------------------------------------
