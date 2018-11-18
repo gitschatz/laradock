@@ -12,3 +12,5 @@ RUN if [ ${SOLR_DATAIMPORTHANDLER_MYSQL} = true ]; then \
        && rm /tmp/mysql_connector.tar.gz \
 ;fi
 
+#use ENV later
+#ENTRYPOINT ["/opt/solr/bin/solr", "create_core", "-c", "drupal", "-d", "/home/yhntx/workspace/bclc-apps/nnils.local/sites/all/modules/search_api_solr/solr-conf/6.x"]
