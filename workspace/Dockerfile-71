@@ -692,6 +692,17 @@ RUN if [ ${INSTALL_DUSK_DEPS} = true ]; then \
 ;fi
 
 #####################################
+# PEAR dependencies for Drush:
+#####################################
+
+ARG INSTALL_FILE_MARC=false
+RUN if [ ${INSTALL_FILE_MARC} = true ]; then \
+    # Install the File_MARC and dependencies
+    pear install Validate_ISPN-alpha && \
+    pear install File_MARC-stable \
+;fi
+
+#####################################
 # Check PHP version:
 #####################################
 
