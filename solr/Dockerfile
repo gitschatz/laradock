@@ -13,4 +13,5 @@ RUN if [ ${SOLR_DATAIMPORTHANDLER_MYSQL} = true ]; then \
 ;fi
 
 #use ENV later
-#ENTRYPOINT ["/opt/solr/bin/solr", "create_core", "-c", "drupal", "-d", "/home/yhntx/workspace/bclc-apps/nnils.local/sites/all/modules/search_api_solr/solr-conf/6.x"]
+#ENTRYPOINT ["/opt/solr/bin/solr", "create_core", "-c", "drupal", "-d", "./solr/config/6.x"]
+#Copy config into /opt/solr/server/solr/drupal/ with data/elevate.xml
